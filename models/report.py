@@ -22,4 +22,4 @@ class Report(BaseModel):
         if (kwargs):
             if "time_generated" in kwargs:
                 kwargs["time_generated"] = datetime.fromisoformat(kwargs["time_generated"])
-            super.update(**kwargs)
+            super().update(**kwargs)

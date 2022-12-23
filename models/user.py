@@ -29,7 +29,7 @@ class User(BaseModel):
         if (kwargs):
             if "last_login" in kwargs:
                 kwargs["last_login"] = datetime.fromisoformat(kwargs["last_login"])
-            super.update(**kwargs)
+            super().update(**kwargs)
         
     def create_task(self, **kwargs):
         """Creates a new task instance"""
