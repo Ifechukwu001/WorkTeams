@@ -39,19 +39,18 @@ class User(BaseModel):
         if "created_at" in kwargs:
             kwargs.pop("created_at")
         task.update(**kwargs)
+        self.tasks.append(task)
 
         return task
 
     def create_report(self, **kwargs):
         """Creates a new report instance"""
-        report = Report()
         if "id" in kwargs:
             kwargs.pop("id")
-        if "create_report" in kwargs:
+        if "created_at" in kwargs:
             kwargs.pop("created_at")
-        report.update(**kwargs)
-
-        return report
+        report = Report.generate(self, **kwargs)
+        self.reports.append(report)
 
     def logged(self):
         """Manages the logged status of a user"""
@@ -60,3 +59,16 @@ class User(BaseModel):
             self.is_loggedin = True
         else:
             self.is_loggedin = False
+
+    def create_admin(self, user):
+        """Creates a new admin"""
+        if self.is_admin && user in self.subordinates:
+            user.is_admin = True
+
+    def create_subordinate(self, name, email):
+        """Create a new subordinate"""
+        sub = self()
+        sub.update(name=name, email=email, password=email)
+        self.subordintes.append(sub)
+        return sub
+
