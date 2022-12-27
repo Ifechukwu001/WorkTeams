@@ -1,12 +1,13 @@
 """Module for the base model"""
 import uuid
 import datetime
+import models
 
 
 class BaseModel:
     """BaseModel class"""
 
-    def __init__(self):
+    def __init__(self, **kwargs):
         """Initializes the id of the model
 
         Attributes:
@@ -14,8 +15,12 @@ class BaseModel:
             created_at (datetime.DateTime): Time of creation of the instance.
 
         """
-        self.id = uuid.uuid4()
-        self.created_at = datetime.datetime.utcnow()
+        if kwargs:
+            self.update(**kwargs)
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.datetime.utcnow()
+            models.storage.new(self)
 
     def to_dict(self):
         """Returns a dictionary representation of the class
@@ -25,7 +30,11 @@ class BaseModel:
 
         """
         new_dict = self.__dict__.copy()
-        new_dict["created_at"] = self.created_at.isoformat()
+        for key, value in new_dict.items():
+            if type(value) is datetime.datetime:
+                new_dict[key] = value.isoformat()
+        if "__class__" not in new_dict:
+            new_dict["__class__"] = self.__class__.__name__
 
         return new_dict
 
@@ -42,3 +51,7 @@ class BaseModel:
                     value = datetime.datetime.fromisoformat(value)
 
                 self.__setattr__(attribute, value)
+
+    def __repr__(self):
+        """Representation of the class"""
+        return str(self.to_dict())

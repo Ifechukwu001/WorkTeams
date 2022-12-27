@@ -1,4 +1,5 @@
 "Module containing the step model"""
+import models
 from models.base_model import BaseModel
 
 
@@ -7,11 +8,14 @@ class Step(BaseModel):
 
     info = ""
     status = ""
+    task_id = ""
+    user_id = ""
 
     def __init__(self):
         """Initialize the class"""
-        super()
+        super().__init__()
         self.status = "in progress"
+        models.storage.new(self)
 
     def update(self, **kwargs):
         """Update the cass attributes"""

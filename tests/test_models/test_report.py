@@ -11,8 +11,10 @@ class TestReport(unittest.TestCase):
     def test_generate(self):
         """Test for generate()"""
         user = User()
-        report = Report.generate(user, **{"title": "test report"})
-        self.assertTrue(type(report) is Report)
+        report1 = user.reports
+        Report.generate(user, **{"title": "test report"})
+        report2 = user.reports
+        self.assertTrue(len(report2) > len(report1))
 
     def test_compile(self):
         """Test for compile()"""
