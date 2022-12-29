@@ -10,7 +10,6 @@ class Report(BaseModel):
     time_generated = None
     title = ""
     summary = ""
-    #tasks = []
     total_tasks = 0
     done_tasks = 0
     pending_tasks = 0

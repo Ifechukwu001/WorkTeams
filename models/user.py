@@ -15,15 +15,10 @@ class User(BaseModel):
     email = ""
     password = ""
     workspace = ""
-    daily_hours = 0
-    total_hours = 0
     last_login = None
     is_loggedin = False
     is_admin = False
     admin_id = ""
-    #subordinates = []
-    #tasks = []
-    #reports = []
 
     def __init__(self, **kwargs):
         """Initialize the instance"""

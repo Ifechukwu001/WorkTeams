@@ -11,7 +11,6 @@ class Task(BaseModel):
     title = ""
     description = ""
     status = ""
-    #steps = []
     deadline = None
     user_id = ""
 
