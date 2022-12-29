@@ -11,9 +11,9 @@ class Step(BaseModel):
     task_id = ""
     user_id = ""
 
-    def __init__(self):
+    def __init__(self, **kwargs):
         """Initialize the class"""
-        super().__init__()
+        super().__init__(**kwargs)
         self.status = "in progress"
         models.storage.new(self)
 

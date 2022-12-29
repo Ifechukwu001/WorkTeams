@@ -15,9 +15,9 @@ class Task(BaseModel):
     deadline = None
     user_id = ""
 
-    def __init__(self):
+    def __init__(self, **kwargs):
         """Initializes the instance"""
-        super().__init__()
+        super().__init__(**kwargs)
         self.status = "in progress"
         models.storage.new(self)
 

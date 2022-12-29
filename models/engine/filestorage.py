@@ -1,5 +1,6 @@
 """Module containing the file storage model"""
 import json
+import os
 from models.user import User
 from models.task import Task
 from models.report import Report
@@ -10,7 +11,7 @@ classes = {"User": User, "Task": Task, "Report": Report, "Step": Step}
 
 class FileStorage:
     """file storage engine"""
-    __file_path = "file.wt.json"
+    __file_path = "{}/file.wt.json".format(os.getcwd())
     __objects = {}
 
     def all(self, cls=None):

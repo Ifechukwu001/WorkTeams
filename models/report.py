@@ -1,7 +1,8 @@
 """Module containing the report model"""
 import models
-from models.base_model import BaseModel
 from datetime import datetime
+from models.base_model import BaseModel
+from models.task import Task
 
 
 class Report(BaseModel):
@@ -15,9 +16,9 @@ class Report(BaseModel):
     pending_tasks = 0
     user_id = ""
 
-    def __init__(self):
+    def __init__(self, **kwargs):
         """Initializes the Report"""
-        super().__init__()
+        super().__init__(**kwargs)
         models.storage.new(self)
 
     def update(self, **kwargs):
@@ -53,10 +54,11 @@ class Report(BaseModel):
         kwargs["total_tasks"] = len(tasks)
         kwargs["done_tasks"] = done
         kwargs["pending_tasks"] = pending
-        kwargs["time_generated"] = datetime.utcnow().isoformat()
+        date = datetime.utcnow()
+        kwargs["time_generated"] = date.isoformat()
         kwargs["user_id"] = user.id
         if "title" not in kwargs:
-            kwargs["title"] = "Report for {} ({})".format(user.name, user.email)
+            kwargs["title"] = "Report for {} ({}) on {}".format(user.name, user.email, date.date())
         
         report = cls()
         report.update(**kwargs)

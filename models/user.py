@@ -1,9 +1,11 @@
 """Module containing the user model"""
+import os
 from datetime import datetime
 import models
 from models.base_model import BaseModel
 from models.report import Report
 from models.task import Task
+from models.step import Step
 
 
 class User(BaseModel):
@@ -23,15 +25,17 @@ class User(BaseModel):
     #tasks = []
     #reports = []
 
-    def __init__(self):
+    def __init__(self, **kwargs):
         """Initialize the instance"""
-        super().__init__()
+        super().__init__(**kwargs)
 
     def update(self, **kwargs):
         """Update the attribute of the User"""
         if (kwargs):
             if "last_login" in kwargs:
                 kwargs["last_login"] = datetime.fromisoformat(kwargs["last_login"])
+            if "workspace" in kwargs:
+                os.makedirs(kwargs["workspace"], exist_ok=True)
             super().update(**kwargs)
 
     @property
@@ -69,8 +73,17 @@ class User(BaseModel):
             kwargs.pop("id")
         if "created_at" in kwargs:
             kwargs.pop("created_at")
+        if "deadline" in kwargs:
+            deadline = kwargs.pop("deadline")
+            deadline = [int(i) for i in deadline]
+        if "steps" in kwargs:
+            steps = kwargs.pop("steps")
+            for step in steps:
+                st = Step()
+                st.update(info=step, task_id=task.id, user_id=self.id)
         kwargs["user_id"] = self.id
         task.update(**kwargs)
+        task.add_deadline(*deadline)
 
         models.storage.save()
 
@@ -100,10 +113,11 @@ class User(BaseModel):
     def create_subordinate(self, name, email, admin_id=None):
         """Create a new subordinate"""
         admin = self.id
+        workspace = "{}/{}".format(models.home, name.split()[0])
         if admin_id != None:
             admin = admin_id
         if self.is_admin:
             sub = self.__class__()
-            sub.update(name=name, email=email, password=email, admin_id=admin)
+            sub.update(name=name, email=email, password=email, admin_id=admin, workspace=workspace)
 
             models.storage.save()

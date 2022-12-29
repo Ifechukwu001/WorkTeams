@@ -16,6 +16,7 @@ class BaseModel:
 
         """
         if kwargs:
+            kwargs.pop("__class__")
             self.update(**kwargs)
         else:
             self.id = str(uuid.uuid4())
