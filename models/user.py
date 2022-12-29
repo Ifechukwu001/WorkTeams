@@ -68,9 +68,6 @@ class User(BaseModel):
             kwargs.pop("id")
         if "created_at" in kwargs:
             kwargs.pop("created_at")
-        if "deadline" in kwargs:
-            deadline = kwargs.pop("deadline")
-            deadline = [int(i) for i in deadline]
         if "steps" in kwargs:
             steps = kwargs.pop("steps")
             for step in steps:
@@ -78,7 +75,10 @@ class User(BaseModel):
                 st.update(info=step, task_id=task.id, user_id=self.id)
         kwargs["user_id"] = self.id
         task.update(**kwargs)
-        task.add_deadline(*deadline)
+        if "deadline" in kwargs:
+            dline = kwargs.pop("deadline")
+            deadline = [int(i) for i in dline]
+            task.add_deadline(**deadline)
 
         models.storage.save()
 
