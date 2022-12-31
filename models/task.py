@@ -1,12 +1,19 @@
 """Module containing the task model"""
 import models
 from datetime import datetime
-from models.base_model import BaseModel
+from models.base_model import BaseModel, Base
 from models.step import Step
+from sqlalchemy import Column, DateTime, String, ForeignKey
 
 
 class Task(BaseModel):
     """Task class"""
+    if models.storage_t == "db":
+        title = Column(String(128), nullable=False)
+        description = Column(String(256))
+        status = Column(String(20), nullable=False)
+        deadline = Column(DateTime)
+        user_id = Column(ForeignKey("user.id"))
 
     title = ""
     description = ""

@@ -1,11 +1,22 @@
 """Module for the base model"""
+import os
 import uuid
 import datetime
 import models
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, String, DateTime
+
+if os.getenv("WT_STORAGE") == "db":
+    Base = declarative_base()
+else:
+    Base = object
 
 
 class BaseModel:
     """BaseModel class"""
+    if os.getenv("WT_STORAGE") == "db":
+        id = Column(String(50), default=str(uuid.uuid4()), unique=True, primary_key=True)
+        created_at = Column(DateTime, default=str(datetime.datetime.utcnow()))
 
     def __init__(self, **kwargs):
         """Initializes the id of the model

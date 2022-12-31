@@ -1,12 +1,24 @@
 """Module containing the report model"""
+import os
 import models
 from datetime import datetime
-from models.base_model import BaseModel
+from models.base_model import BaseModel, Base
 from models.task import Task
+from sqlalchemy import Column, DateTime, String, Integer, ForeignKey
 
 
-class Report(BaseModel):
+
+class Report(BaseModel, Base):
     """Report class"""
+    if models.storage_t == "db":
+        __tablename__ = "report"
+        time_generated = Column(DateTime)
+        title = Column(String(128), nullable=False)
+        summary = Column(String(256))
+        total_tasks = Column(Integer)
+        done_tasks = Column(Integer)
+        pending_tasks = Column(Integer)
+        user_id = Column(ForeignKey("user.id"), nullable=False)
     time_generated = None
     title = ""
     summary = ""

@@ -1,12 +1,15 @@
 import os
-from .user import User
-from .engine.filestorage import FileStorage
 
+storage_t = os.getenv("WT_STORAGE")
+
+from models.engine.filestorage import FileStorage
 storage = FileStorage()
 storage.load()
 
 admin = False
 home = "{}/WTeams".format(os.getenv("HOME"))
+
+from models.user import User
 if len(storage.all()) == 0:
     admin = User()
     admin.is_admin = True
@@ -14,4 +17,3 @@ if len(storage.all()) == 0:
     admin.update(name="admin", password="admin", email="admin@wt.com", workspace="{}/admin".format(home))
     storage.save()
 
-__all__ = ["storage", "home"]

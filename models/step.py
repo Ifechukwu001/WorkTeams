@@ -1,10 +1,17 @@
 "Module containing the step model"""
 import models
-from models.base_model import BaseModel
+from models.base_model import BaseModel, Base
+from sqlalchemy import Column, String, ForeignKey
 
 
-class Step(BaseModel):
+class Step(BaseModel, Base):
     """Step class"""
+    if models.storage_t == "db":
+        __tablename__ = "step"
+        info = Column(String(128), nullable=False)
+        status = Column(String(20), nullable=False)
+        task_id = Column(ForeignKey("task.id"), nullable=False)
+        user_id = Column(ForeignKey("user.id"), nullable=False)
 
     info = ""
     status = ""

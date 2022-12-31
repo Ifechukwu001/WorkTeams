@@ -2,14 +2,25 @@
 import os
 from datetime import datetime
 import models
-from models.base_model import BaseModel
+from models.base_model import BaseModel, Base
 from models.report import Report
 from models.task import Task
 from models.step import Step
+from sqlalchemy import Column, String, DateTime, Boolean, ForeignKey
 
 
 class User(BaseModel):
     """User Class"""
+    if models.storage_t == "db":
+        name = Column(String(30))
+        email = Column(String(30), unique=True, nullable=False)
+        password = Column(String(30), nullable=False)
+        workspace = Column(String(128), unique=True)
+        last_login = Column(DateTime, default=None)
+        is_loggedin = Column(Boolean, default=False)
+        is_admin = Column(Boolean, default=False)
+        admin_id = Column(ForeignKey("user.id"), nullable=True)
+
 
     name = ""
     email = ""
@@ -108,7 +119,7 @@ class User(BaseModel):
     def create_subordinate(self, name, email, admin_id=None):
         """Create a new subordinate"""
         admin = self.id
-        workspace = "{}/{}".format(models.home, name.split()[0])
+        workspace = "{}/{}".format(models.home, email.split("@")[0])
         if admin_id != None:
             admin = admin_id
         if self.is_admin:
