@@ -2,6 +2,7 @@
 import models
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, ForeignKey
+from sqlalchemy.orm import relationship
 
 
 class Step(BaseModel, Base):
@@ -10,13 +11,15 @@ class Step(BaseModel, Base):
         __tablename__ = "step"
         info = Column(String(128), nullable=False)
         status = Column(String(20), nullable=False)
-        task_id = Column(ForeignKey("task.id"), nullable=False)
-        user_id = Column(ForeignKey("user.id"), nullable=False)
+        task_id = Column(String(50), ForeignKey("task.id"))
+        user_id = Column(String(50), ForeignKey("user.id"))
+        task = relationship("Task", back_populates="steps")
 
-    info = ""
-    status = ""
-    task_id = ""
-    user_id = ""
+    else:
+        info = ""
+        status = ""
+        task_id = ""
+        user_id = ""
 
     def __init__(self, **kwargs):
         """Initialize the class"""

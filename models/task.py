@@ -4,6 +4,7 @@ from datetime import datetime
 from models.base_model import BaseModel, Base
 from models.step import Step
 from sqlalchemy import Column, DateTime, String, ForeignKey
+from sqlalchemy.orm import relationship
 
 
 class Task(BaseModel):
@@ -13,13 +14,15 @@ class Task(BaseModel):
         description = Column(String(256))
         status = Column(String(20), nullable=False)
         deadline = Column(DateTime)
-        user_id = Column(ForeignKey("user.id"))
+        user_id = Column(String(50), ForeignKey("user.id"))
+        user = relationship("User", back_populates="tasks")
 
-    title = ""
-    description = ""
-    status = ""
-    deadline = None
-    user_id = ""
+    else:
+        title = ""
+        description = ""
+        status = ""
+        deadline = None
+        user_id = ""
 
     def __init__(self, **kwargs):
         """Initializes the instance"""
@@ -34,14 +37,15 @@ class Task(BaseModel):
                 kwargs["deadline"] = datetime.fromisoformat(kwargs["deadline"])
             super().update(**kwargs)
 
-    @property
-    def steps(self):
-        """Returs the steps of a task"""
-        stps = []
-        for stp in models.storage.all(Step):
-            if stp.user_id == self.user_id and stp.task_id == self.id:
-                stps.append(stp)
-        return stps
+    if models.storage_t != "db":
+        @property
+        def steps(self):
+            """Returs the steps of a task"""
+            stps = []
+            for stp in models.storage.all(Step):
+                if stp.user_id == self.user_id and stp.task_id == self.id:
+                    stps.append(stp)
+            return stps
 
     def add_deadline(self, day, month, year, hour=6, mins=0):
         """Creates the deadline"""

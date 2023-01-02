@@ -5,6 +5,7 @@ from datetime import datetime
 from models.base_model import BaseModel, Base
 from models.task import Task
 from sqlalchemy import Column, DateTime, String, Integer, ForeignKey
+from sqlalchemy.orm import relationship
 
 
 
@@ -18,14 +19,17 @@ class Report(BaseModel, Base):
         total_tasks = Column(Integer)
         done_tasks = Column(Integer)
         pending_tasks = Column(Integer)
-        user_id = Column(ForeignKey("user.id"), nullable=False)
-    time_generated = None
-    title = ""
-    summary = ""
-    total_tasks = 0
-    done_tasks = 0
-    pending_tasks = 0
-    user_id = ""
+        user_id = Column(String(50), ForeignKey("user.id"))
+        user = relationship("User", back_populates="reports")
+
+    else:
+        time_generated = None
+        title = ""
+        summary = ""
+        total_tasks = 0
+        done_tasks = 0
+        pending_tasks = 0
+        user_id = ""
 
     def __init__(self, **kwargs):
         """Initializes the Report"""
