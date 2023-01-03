@@ -10,9 +10,10 @@ from sqlalchemy import Column, String, DateTime, Boolean, ForeignKey
 from sqlalchemy.orm import relationship, backref
 
 
-class User(BaseModel):
+class User(BaseModel, Base):
     """User Class"""
     if models.storage_t == "db":
+        __tablename__ = "user"
         name = Column(String(30))
         email = Column(String(30), unique=True, nullable=False)
         password = Column(String(30), nullable=False)
@@ -21,7 +22,6 @@ class User(BaseModel):
         is_loggedin = Column(Boolean, default=False)
         is_admin = Column(Boolean, default=False)
         admin_id = Column(String(50), ForeignKey("user.id"))
-        subordinates = relationship("User", backref=backref("admin", remote_side="User.id"))
 
     else:
         name = ""
@@ -46,34 +46,33 @@ class User(BaseModel):
                 os.makedirs(kwargs["workspace"], exist_ok=True)
             super().update(**kwargs)
 
-    if models.storage_t != "db":
-        @property
-        def subordinates(self):
-            """Return subordinates"""
-            subs = []
-            if self.is_admin:
-                for sub in models.storage.all(self.__class__):
-                    if sub.admin_id == self.id:
-                        subs.append(sub)
-            return subs
+    @property
+    def subordinates(self):
+        """Return subordinates"""
+        subs = []
+        if self.is_admin:
+            for sub in models.storage.all(self.__class__):
+                if sub.admin_id == self.id:
+                    subs.append(sub)
+        return subs
 
-        @property
-        def tasks(self):
-            """Return the tasks of a user"""
-            tsks = []
-            for tsk in models.storage.all(Task):
-                if tsk.user_id == self.id:
-                    tsks.append(tsk)
-            return tsks
+    @property
+    def tasks(self):
+        """Return the tasks of a user"""
+        tsks = []
+        for tsk in models.storage.all(Task):
+            if tsk.user_id == self.id:
+                tsks.append(tsk)
+        return tsks
 
-        @property
-        def reports(self):
-            """Returns the reports of a user"""
-            rpts = []
-            for rpt in models.storage.all(Report):
-                if rpt.user_id == self.id:
-                    rpts.append(rpt)
-            return rpts
+    @property
+    def reports(self):
+        """Returns the reports of a user"""
+        rpts = []
+        for rpt in models.storage.all(Report):
+            if rpt.user_id == self.id:
+                rpts.append(rpt)
+        return rpts
         
     def create_task(self, **kwargs):
         """Creates a new task instance"""
@@ -82,17 +81,22 @@ class User(BaseModel):
             kwargs.pop("id")
         if "created_at" in kwargs:
             kwargs.pop("created_at")
+        steps = []
         if "steps" in kwargs:
             steps = kwargs.pop("steps")
-            for step in steps:
-                st = Step()
-                st.update(info=step, task_id=task.id, user_id=self.id)
         kwargs["user_id"] = self.id
-        task.update(**kwargs)
+        deadline = []
         if "deadline" in kwargs:
             dline = kwargs.pop("deadline")
             deadline = [int(i) for i in dline]
-            task.add_deadline(**deadline)
+        task.update(**kwargs)
+        if steps:
+            for step in steps:
+                st = Step()
+                st.update(info=step, user_id=self.id)
+                task.add_step(st)
+        if deadline:
+            task.add_deadline(*deadline)
 
         models.storage.save()
 

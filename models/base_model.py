@@ -61,8 +61,8 @@ class BaseModel:
             for attribute, value in kwargs.items():
                 if (attribute == "created_at"):
                     value = datetime.datetime.fromisoformat(value)
-
                 self.__setattr__(attribute, value)
+            models.storage.save()
 
     def __repr__(self):
         """Representation of the class"""

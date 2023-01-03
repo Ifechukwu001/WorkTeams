@@ -7,15 +7,15 @@ from sqlalchemy import Column, DateTime, String, ForeignKey
 from sqlalchemy.orm import relationship
 
 
-class Task(BaseModel):
+class Task(BaseModel, Base):
     """Task class"""
     if models.storage_t == "db":
+        __tablename__ = "task"
         title = Column(String(128), nullable=False)
         description = Column(String(256))
         status = Column(String(20), nullable=False)
         deadline = Column(DateTime)
         user_id = Column(String(50), ForeignKey("user.id"))
-        user = relationship("User", back_populates="tasks")
 
     else:
         title = ""
@@ -37,15 +37,14 @@ class Task(BaseModel):
                 kwargs["deadline"] = datetime.fromisoformat(kwargs["deadline"])
             super().update(**kwargs)
 
-    if models.storage_t != "db":
-        @property
-        def steps(self):
-            """Returs the steps of a task"""
-            stps = []
-            for stp in models.storage.all(Step):
-                if stp.user_id == self.user_id and stp.task_id == self.id:
-                    stps.append(stp)
-            return stps
+    @property
+    def steps(self):
+        """Returs the steps of a task"""
+        stps = []
+        for stp in models.storage.all(Step):
+            if stp.user_id == self.user_id and stp.task_id == self.id:
+                stps.append(stp)
+        return stps
 
     def add_deadline(self, day, month, year, hour=6, mins=0):
         """Creates the deadline"""
@@ -64,3 +63,7 @@ class Task(BaseModel):
     def abandon(self):
         """Abandans the task"""
         self.status = "abandoned"
+
+    def done(self):
+        """Finishes the task"""
+        self.status = "done"

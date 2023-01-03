@@ -13,7 +13,6 @@ class Step(BaseModel, Base):
         status = Column(String(20), nullable=False)
         task_id = Column(String(50), ForeignKey("task.id"))
         user_id = Column(String(50), ForeignKey("user.id"))
-        task = relationship("Task", back_populates="steps")
 
     else:
         info = ""

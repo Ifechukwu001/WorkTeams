@@ -2,8 +2,13 @@ import os
 
 storage_t = os.getenv("WT_STORAGE")
 
-from models.engine.filestorage import FileStorage
-storage = FileStorage()
+if storage_t == "db":
+    from models.engine.db_storage import DBStorage
+    storage = DBStorage()
+else:
+    from models.engine.filestorage import FileStorage
+    storage = FileStorage()
+
 storage.load()
 
 admin = False

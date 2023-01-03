@@ -20,7 +20,6 @@ class Report(BaseModel, Base):
         done_tasks = Column(Integer)
         pending_tasks = Column(Integer)
         user_id = Column(String(50), ForeignKey("user.id"))
-        user = relationship("User", back_populates="reports")
 
     else:
         time_generated = None

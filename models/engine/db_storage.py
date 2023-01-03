@@ -1,6 +1,7 @@
 """Module containing the file storage model"""
 import json
-import os
+from os import getenv
+from models.base_model import Base
 from models.user import User
 from models.task import Task
 from models.report import Report
@@ -18,14 +19,14 @@ class DBStorage:
 
     def __init__(self):
         """Initialize the storage"""
-        WT_MYSQL_USER = getenv("WT_MYSQL_USER")
-        WT_MYSQL_PASS = getenv("WT_MYSQL_PASS")
-        WT_MYSQL_HOST = getenv("WT_MYSQL_HOST")
-        WT_MYSQL_DB = getenv("WT_MYSQL_DB")
-        self.__engine = create_engine("mysql+mysqldb://{}:{}@{}/{}".format(WT_MYSQL_USER,
-            WT_MYSQL_PASS,
-            WT_MYSQL_HOST,
-            WT_MYSQL_DB))
+        WT_USER = getenv("WT_USER")
+        WT_PASS = getenv("WT_PASS")
+        WT_HOST = getenv("WT_HOST")
+        WT_DB = getenv("WT_DB")
+        self.__engine = create_engine("mysql+mysqldb://{}:{}@{}/{}".format(WT_USER,
+            WT_PASS,
+            WT_HOST,
+            WT_DB))
         
 
     def all(self, cls=None):
@@ -50,6 +51,6 @@ class DBStorage:
     def load(self):
         """Loads the objects from the storage to the application"""
         Base.metadata.create_all(self.__engine)
-        factory = sessionmaker(bind=self.__engine)
+        factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(factory)
         self.__session = Session

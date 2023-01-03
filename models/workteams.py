@@ -81,63 +81,129 @@ class WTCMD(cmd.Cmd):
         else:
             self.command = True
 
-    def do_new_task(self, arg):
+    def do_task(self, arg):
         """Create a new task"""
-        title = input("Task Title: ")
-        desc = input("Task Description: ")
-        deadline = input("Task Deadline(day month year /optional( hour minute ): ").split(" ")
-        if len(title) < 4:
-            print("Couldn't create task: Invalid title")
-            return False
         try:
-            deadline = [int(num) for num in deadline]
-        except ValueError:
-            print("Couldn't create task: Invalid date")
-            return False
-        steps = []
-        print("Steps to achieve task:")
-        num = 1
-        while True:
-            step = input("{}. ".format(num))
-            if step:
-                steps.append(step)
+            title = input("Task Title: ")
+            desc = input("Task Description: ")
+            deadline = input("Task Deadline(day month year /optional( hour minute ): ").split(" ")
+        except EOFError:
+            print()
+            print("Invalid Input")
+        else:
+            if len(title) < 4:
+                print()
+                print("Couldn't create task: Title is too short")
+                return False
+            try:
+                deadline = [int(num) for num in deadline]
+                if len(deadline) < 3:
+                    raise ValueError
+                if deadline[0] > 31 or deadline[1] > 12:
+                    raise ValueError
+                if len(deadline) > 3 and deadline[3] > 23:
+                    raise ValueError
+                if len(deadline) > 4 and deadline[4] > 59:
+                    raise ValueError
+            except ValueError:
+                print()
+                print("Couldn't create task: Invalid date")
+                return False
+            steps = []
+            print("Steps to achieve task:")
+            num = 1
+            try:
+                while True:
+                    step = input("{}. ".format(num))
+                    if step:
+                        steps.append(step)
+                    else:
+                        break
+                    num += 1
+            except EOFError:
+                print()
+                print("Couldn't create task: Invalid step")
             else:
-                break
-            num += 1
-        self.current_user.create_task(title=title, description=desc, deadline = deadline, steps=steps)
+                self.current_user.create_task(title=title, description=desc, deadline=deadline, steps=steps)
 
     def do_tasks(self, arg):
         """Display all the tasks of a user"""
-        for task in self.current_user.tasks:
-            print("=====================================================")
-            print("Task Title: {} ({})".format(task.title, task.status))
-            print("Task Description: {}".format(task.description))
-            print("Deadline: {}".format(task.deadline))
-            print("Steps:")
-            i = 1
-            for step in task.steps:
-                print("{}. {} ({})".format(i, step.info, step.status))
-                i += 1
+        if arg:
+            for task in self.current_user.tasks:
+                if task.title == arg:
+                    print("=====================================================")
+                    print("Task Title: {} ({})".format(task.title, task.status))
+                    print("Task Description: {}".format(task.description))
+                    print("Deadline: {}".format(task.deadline))
+                    print("Steps:")
+                    i = 1
+                    for step in task.steps:
+                        print("{}. {} ({})".format(i, step.info, step.status))
+                        i += 1
+        else:
+            for task in self.current_user.tasks:
+                print("=====================================================")
+                print("Task Title: {} ({})".format(task.title, task.status))
+                print("Task Description: {}".format(task.description))
+                print("Deadline: {}".format(task.deadline))
+                print("Steps:")
+                i = 1
+                for step in task.steps:
+                    print("{}. {} ({})".format(i, step.info, step.status))
+                    i += 1
 
-    def do_new_report(self, arg):
+    def do_done(self, arg):
+        """Sets an 'in progress' step of a task to 'done'"""
+        if arg:
+            for task in self.current_user.tasks:
+                if task.title == arg:
+                    for step in task.steps:
+                        if step.status == "in progress":
+                            task.step_done(step)
+                            if step == task.steps[-1]:
+                                task.done()
+                            return False
+
+    def do_abandon(self, arg):
+        """Abandons a task"""
+        if arg:
+            for task in self.current_user.tasks:
+                if task.title == arg:
+                    task.abandon()
+
+    def do_report(self, arg):
         """Create a new report"""
-        summary = input("Report Summary: ")
-        Report.generate(self.current_user, summary=summary)
+        try:
+            summary = input("Report Summary: ")
+        except EOFError:
+            print()
+            print("Invalid Input")
+        else:
+            Report.generate(self.current_user, summary=summary)
 
     def do_reports(self, arg):
         """Display all the user's reports"""
-        for report in self.current_user.reports:
-            print("=====================================================")
-            print("Report Title: {}".format(report.title))
-            print("Summary: {}".format(report.summary))
-            print("Tasks done: {}/{}".format(report.done_tasks, report.total_tasks))
-            print("Tasks:")
-            for task in report.tasks:
-                print("    * {}".format(task.title), end=" ")
-                if task.status == "done":
-                    print("(done)")
-                else:
-                    print("(in progress)")
+        date = [int(i) for i in arg.split()]
+        date.reverse()
+        if len(date) == 3:
+            for report in self.current_user.reports:
+                if report.time_generated > datetime(*date):
+                    print("=====================================================")
+                    print("Report Title: {}".format(report.title))
+                    print("Summary: {}".format(report.summary))
+                    print("Tasks done: {}/{}".format(report.done_tasks, report.total_tasks))
+                    print("Tasks:")
+                    for task in report.tasks:
+                        print("    * {} ({})".format(task.title, task.status))
+        else:
+            for report in self.current_user.reports:
+                print("=====================================================")
+                print("Report Title: {}".format(report.title))
+                print("Summary: {}".format(report.summary))
+                print("Tasks done: {}/{}".format(report.done_tasks, report.total_tasks))
+                print("Tasks:")
+                for task in report.tasks:
+                    print("    * {} ({})".format(task.title, task.status))
 
     def do_subordinate(self, arg):
         """Creates a new subordinate"""
