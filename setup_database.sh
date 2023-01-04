@@ -14,5 +14,7 @@ _EOF_
 
 if [ -z "$WT_USER" ]
 	sed -i "\$a\export WT_STORAGE=db WT_USER=wt_user WT_HOST=localhost WT_PASS=wt_pass WT_DB=wt_db" /etc/profile
+	echo "Restarting your machine... Save all work progress and press ENTER when ready."
+	read
 	sudo reboot
 fi
