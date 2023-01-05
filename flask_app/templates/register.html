@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="form">
+    <h4>WorkTeams</h4>
+    <p>Collaborating Teams</p>
+    <div class="select_btn">
+        <button type="submit" class="selected">Register</button>
+        <button type="submit">Log in</button>
+    </div>
+    <div>
+        <form action="" method="post">
+            <input type="text" name="username" id="username" placeholder="Name:">
+            <input type="text" name="usermail" id="usermail" placeholder="Email:">
+            <input type="text" name="superior" id="superior" placeholder="Superior's Email:">
+            <input type="text" name="superiorpass" id="superiorpass" placeholder="Superior's Password:">
+            <a href="#"><img src="#" alt=""></a>
+        </form>
+    </div>
+</div>
+{% endblock %}

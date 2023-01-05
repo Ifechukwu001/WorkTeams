@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+    <div class="dashboard">
+        <ul>
+            <a href=""><li>Name (Email)</li></a>
+            <a href=""><li>Notification</li></a>
+            <a href=""><li>Reports</li></a>
+        </ul>
+    </div>
+    <div>
+        <h4 class="card">Tasks</h4>
+        {% for task in tasks %}
+        <div class="card">
+            <h4>{{ task.title }}</h4>
+            <br>
+            <p>{{ task.description }}</p>
+        </div>
+        {% endfor %}
+        <p class="new_btn">New</p>
+    </div>
+    <div>
+        <h4 class="class">In progress</h4>
+        {% for step in undone_steps %}
+        <p class="card">{{ step.info }}</p>
+        {% endfor %}
+        <p class="new_btn">New</p>
+    </div>
+    <div>
+        <h4 class="card">Done</h4>
+        {% for step in done_steps %}
+        <div class="card">
+            <p>{{ step.info }}</p>
+            <img src="#" alt="">
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
