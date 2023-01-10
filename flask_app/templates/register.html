@@ -1,20 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="form">
-    <h4>WorkTeams</h4>
-    <p>Collaborating Teams</p>
-    <div class="select_btn">
-        <button type="submit" class="selected">Register</button>
-        <button type="submit">Log in</button>
+<div class="container">
+    <div></div>
+    <div class="ui_form">
+        <h4>WorkTeams</h4>
+        <p>Collaborating Teams</p>
+        <div class="select_btn">
+            <a class="selected">Register</button>
+            <a>Log in</button>
+        </div>
+        <div class="form">
+            <form action="" method="post">
+                <input type="text" name="username" id="username" placeholder="Name:">
+                <input type="text" name="usermail" id="usermail" placeholder="Email:">
+                <input type="text" name="superior" id="superior" placeholder="Superior's Email:">
+                <input type="text" name="superiorpass" id="superiorpass" placeholder="Superior's Password:">
+                <a href="#"><img src="#" alt=""></a>
+            </form>
+        </div>
     </div>
-    <div>
-        <form action="" method="post">
-            <input type="text" name="username" id="username" placeholder="Name:">
-            <input type="text" name="usermail" id="usermail" placeholder="Email:">
-            <input type="text" name="superior" id="superior" placeholder="Superior's Email:">
-            <input type="text" name="superiorpass" id="superiorpass" placeholder="Superior's Password:">
-            <a href="#"><img src="#" alt=""></a>
-        </form>
-    </div>
+    <div></div>
 </div>
+
 {% endblock %}
