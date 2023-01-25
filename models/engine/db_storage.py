@@ -40,6 +40,11 @@ class DBStorage:
                 objs.extend(obj)
         return objs
 
+    def get(self, cls, id):
+        """Gets a user from the database"""
+        obj = self.__session.query(cls).filter(cls.id == id).first()
+        return obj
+
     def new(self, obj):
         """Add a new object to the storage"""
         self.__session.add(obj)

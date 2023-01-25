@@ -26,6 +26,13 @@ class FileStorage:
                 objs.append(obj)
         return objs
 
+    def get(self, cls, id):
+        """Get the user of an id"""
+        for key in self.__objects:
+            if key == "{}.{}".format(cls.__name__, id):
+                return self.__objects[key]
+        return None
+
     def new(self, obj):
         """Add a new object to the storage"""
         if obj:
