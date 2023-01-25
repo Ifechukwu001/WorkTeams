@@ -55,6 +55,14 @@ class Task(BaseModel, Base):
         """Adds a action step"""
         step.task_id = self.id
 
+    def create_step(self, **kwargs):
+        """Creates a step for a task"""
+        step = Step()
+        step.update(**kwargs)
+        self.add_step(step)
+
+        models.storage.save()
+
     def step_done(self, step):
         """Moves a step to finished"""
         if step in self.steps:

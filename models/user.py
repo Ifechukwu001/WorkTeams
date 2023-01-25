@@ -88,7 +88,7 @@ class User(BaseModel, Base):
         deadline = []
         if "deadline" in kwargs:
             dline = kwargs.pop("deadline")
-            deadline = [int(i) for i in dline]
+            deadline = [int(i) for i in dline if i]
         task.update(**kwargs)
         if steps:
             for step in steps:
@@ -99,6 +99,7 @@ class User(BaseModel, Base):
             task.add_deadline(*deadline)
 
         models.storage.save()
+        return task.id
 
     def create_report(self, **kwargs):
         """Creates a new report instance"""
