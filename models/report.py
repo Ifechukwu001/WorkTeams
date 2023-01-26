@@ -85,7 +85,7 @@ class Report(BaseModel, Base):
         reports = []
         if user.is_admin:
             if subordinate and subordinate in user.subordinates:
-                reports.append(surbordinate.reports)
+                reports.append(subordinate.reports)
             elif subordinate == None:
                 for subordinate in user.subordinates:
                     reports.append(subordinate.reports)
