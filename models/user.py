@@ -135,3 +135,21 @@ class User(BaseModel, Base):
             sub.update(name=name, email=email, password=email, admin_id=admin, workspace=workspace)
 
             models.storage.save()
+
+    def add_subtask(self, **kwargs):
+        """Create a task for subordinate"""
+        if "subordinate" in kwargs and self.is_admin:
+            subordinate = kwargs.pop("subordinate")
+            for sub in self.subordinates:
+                if sub.email == subordinate:
+                    sub.create_task(**kwargs)
+                    return
+        
+    def check_subreport(self, sub_mail, year, month, day):
+        if self.is_admin:
+            for sub in self.subordinates:
+                if sub.email == sub_mail:
+                    limit_date = datetime(year, month, day)
+                    reports = [report for report in sub.reports if report.time_generated > limit_date]
+                    return reports
+                    
