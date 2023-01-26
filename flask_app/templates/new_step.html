@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container create_div">
+    <div></div>
+    <div class="ui_form create_form">
+        <h4>New Step</h4>
+        {% if error: %}
+            <p>{{ error }}</p>
+        {% endif %}
+        <div class="form">
+            <form id="create" action="{{ url_for('new_step') }}" method="post">
+                <input name="info" id="info" placeholder="Step:">
+                <a href="javascript:document.getElementById('create').submit();"><img src="{{ url_for('static', filename='mark_good.png') }}" alt=""></a>
+            </form>
+        </div>
+    </div>
+    <div></div>
+</div>
+
+{% endblock %}

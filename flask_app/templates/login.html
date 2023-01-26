@@ -5,15 +5,18 @@
     <div class="ui_form">
         <h4>WorkTeams</h4>
         <p>Collaborating Teams</p>
+        {% if error: %}
+            <p>{{ error }}</p>
+        {% endif %}
         <div class="select_btn">
-            <a>Register</button>
-            <a class="selected">Log in</button>
+            <a href="{{ url_for('register') }}">Register</a>
+            <a href="{{ url_for('login') }}" class="selected">Log in</a>
         </div>
         <div class="form">
-            <form action="" method="post">
+            <form id="login" action="{{ url_for('login') }}" method="post">
                 <input type="text" name="usermail" id="usermail" placeholder="Email:">
                 <input type="text" name="password" id="password" placeholder="Password:">
-                <a href="#"><img src="#" alt=""></a>
+                <a href="javascript:document.getElementById('login').submit();"><img src="{{ url_for('static', filename='mark_good.png') }}" alt=""></a>
             </form>
         </div>
     </div>

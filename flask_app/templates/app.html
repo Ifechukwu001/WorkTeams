@@ -1,10 +1,13 @@
 {% extends "base.html" %}
+{% block logged %}
+<a href="{{ url_for('logout') }}">Log out</a>
+{% endblock %}
 {% block content %}
 <div class="main_app">
     <div class="dashboard">
         <ul>
-            <li>Name</li>
-            <li>(Email)</li>
+            <li>{{ user.name }}</li>
+            <li>({{ user.email }})</li>
             <li>Notification</li>
             <li>Reports</li>
         </ul>
@@ -13,28 +16,35 @@
         <div class="column">
             <h4 class="card">Tasks</h4>
             {% for task in tasks %}
-            <div class="card">
-                <h4>{{ task.title }}</h4>
-                <hr>
-                <p>{{ task.description }}</p>
-            </div>
+            <a href="{{ url_for('set_taskid', id=task.id) }}">
+                <div class="card">
+                    <h4>{{ task.title }}</h4>
+                    <hr>
+                    <p>{{ task.description }}</p>
+                </div>
+            </a>
             {% endfor %}
-            <button class="new_btn">New</button>
+            <a href="{{ url_for('new_task') }}" class="new_btn">New</a>
         </div>
         <div class="column">
             <h4 class="card">In progress</h4>
             {% for step in undone_steps %}
-            <p class="card">{{ step.info }}</p>
+            <p class="card step">
+                {{ step.info }}
+                <a href="{{ url_for('done_step', id=step.id) }}">
+                <img src="{{ url_for('static', filename='tick.png') }}">
+                </a>
+            </p>
             {% endfor %}
-            <button class="new_btn">New</button>
+            <a href="{{ url_for('new_step') }}" class="new_btn">New</a>
         </div>
         <div class="column">
             <h4 class="card">Done</h4>
             {% for step in done_steps %}
-            <div class="card">
-                <p>{{ step.info }}</p>
-                <img src="#" alt="">
-            </div>
+            <p class="card step">
+                {{ step.info }}
+                <img src="{{ url_for('static', filename='tick2.png') }}">
+            </p>
             {% endfor %}
         </div>
     </div>

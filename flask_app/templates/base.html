@@ -12,13 +12,13 @@
 <body>
     <header>
         <div>
-            <a href="#">
+            <a href="{{ url_for('home') }}">
                 <h3>WT</h3>
             </a>
             <nav>
-                <a href="#">Home</a>
+                <a href="{{ url_for('home') }}">Home</a>
                 <a href="#">FAQ</a>
-                <a href="#">Log out</a>
+                {% block logged %}{% endblock %}
             </nav>
         </div>
         <hr>

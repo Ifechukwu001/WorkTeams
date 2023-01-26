@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container create_div">
+    <div></div>
+    <div class="ui_form create_form">
+        <h4>New Task</h4>
+        {% if error: %}
+            <p>{{ error }}</p>
+        {% endif %}
+        <div class="form">
+            <form id="create" action="{{ url_for('new_task') }}" method="post">
+                <input type="text" name="title" id="title" placeholder="Title:">
+                <textarea name="description" id="desc" cols="20" rows="5" placeholder="Description:"></textarea>
+                <div class="datetime">
+                    <input type="date" name="dline_date" id="date">
+                    <input type="time" name="dline_time" id="time" placeholder="06:00">
+                </div>
+                <a href="javascript:document.getElementById('create').submit();"><img src="{{ url_for('static', filename='mark_good.png') }}" alt=""></a>
+            </form>
+        </div>
+    </div>
+    <div></div>
+</div>
+
+{% endblock %}
