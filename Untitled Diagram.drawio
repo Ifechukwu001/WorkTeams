@@ -1,1 +1,94 @@
-<mxfile host="app.diagrams.net" modified="2023-01-31T10:46:57.024Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" version="20.8.13" etag="yBV3KItEvTC6Q-vct2vc" type="github"><diagram name="Page-1" id="YX8dFN5f9W4-FjAZ-q6s">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2023-01-31T11:02:14.313Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" etag="drpXShDBG7Bf4MEnQbZd" version="20.8.13" type="github">
+  <diagram name="Page-1" id="YX8dFN5f9W4-FjAZ-q6s">
+    <mxGraphModel dx="1035" dy="545" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="elQm2aC_8iu5TuE16WQp-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="elQm2aC_8iu5TuE16WQp-1" target="elQm2aC_8iu5TuE16WQp-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="elQm2aC_8iu5TuE16WQp-1" value="" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/networking/DNS_Zones.svg;" vertex="1" parent="1">
+          <mxGeometry x="103" y="310" width="64" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="elQm2aC_8iu5TuE16WQp-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.147;entryY=0.415;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="elQm2aC_8iu5TuE16WQp-2" target="elQm2aC_8iu5TuE16WQp-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="elQm2aC_8iu5TuE16WQp-2" value="Internet" style="aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image;image=img/lib/active_directory/internet_cloud.svg;" vertex="1" parent="1">
+          <mxGeometry x="243" y="470" width="116.67" height="73.5" as="geometry" />
+        </mxCell>
+        <mxCell id="elQm2aC_8iu5TuE16WQp-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="elQm2aC_8iu5TuE16WQp-3" target="elQm2aC_8iu5TuE16WQp-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="elQm2aC_8iu5TuE16WQp-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="elQm2aC_8iu5TuE16WQp-3" target="elQm2aC_8iu5TuE16WQp-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="elQm2aC_8iu5TuE16WQp-3" value="Client" style="sketch=0;aspect=fixed;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#00188D;shape=mxgraph.azure.laptop" vertex="1" parent="1">
+          <mxGeometry x="110" y="491.75" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="elQm2aC_8iu5TuE16WQp-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="elQm2aC_8iu5TuE16WQp-9" target="elQm2aC_8iu5TuE16WQp-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="elQm2aC_8iu5TuE16WQp-9" value="Web Server I" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/allied_telesis/computer_and_terminals/Server_Desktop.svg;" vertex="1" parent="1">
+          <mxGeometry x="570" y="348.25" width="81.65" height="103.5" as="geometry" />
+        </mxCell>
+        <mxCell id="elQm2aC_8iu5TuE16WQp-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="elQm2aC_8iu5TuE16WQp-10" target="elQm2aC_8iu5TuE16WQp-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="elQm2aC_8iu5TuE16WQp-10" value="Web Server II" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/allied_telesis/computer_and_terminals/Server_Desktop.svg;" vertex="1" parent="1">
+          <mxGeometry x="560" y="580" width="83.03" height="105.25" as="geometry" />
+        </mxCell>
+        <mxCell id="elQm2aC_8iu5TuE16WQp-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="elQm2aC_8iu5TuE16WQp-11" target="elQm2aC_8iu5TuE16WQp-9">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="444" y="400" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="elQm2aC_8iu5TuE16WQp-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="elQm2aC_8iu5TuE16WQp-11" target="elQm2aC_8iu5TuE16WQp-10">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="440" y="633" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="elQm2aC_8iu5TuE16WQp-11" value="Load Balancer" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/allied_telesis/storage/Datacenter_Server_Half_Rack_ToR.svg;" vertex="1" parent="1">
+          <mxGeometry x="410" y="470" width="68.2" height="88.61" as="geometry" />
+        </mxCell>
+        <mxCell id="elQm2aC_8iu5TuE16WQp-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="elQm2aC_8iu5TuE16WQp-13" target="elQm2aC_8iu5TuE16WQp-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="elQm2aC_8iu5TuE16WQp-13" value="Application Server I" style="image;html=1;image=img/lib/clip_art/computers/Server_128x128.png" vertex="1" parent="1">
+          <mxGeometry x="700" y="310" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="elQm2aC_8iu5TuE16WQp-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="elQm2aC_8iu5TuE16WQp-14" target="elQm2aC_8iu5TuE16WQp-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="elQm2aC_8iu5TuE16WQp-14" value="Application Server II" style="image;html=1;image=img/lib/clip_art/computers/Server_128x128.png" vertex="1" parent="1">
+          <mxGeometry x="710" y="543.5" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="elQm2aC_8iu5TuE16WQp-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;opacity=50;" edge="1" parent="1" source="elQm2aC_8iu5TuE16WQp-15" target="elQm2aC_8iu5TuE16WQp-16">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="980" y="400" />
+              <mxPoint x="980" y="633" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="elQm2aC_8iu5TuE16WQp-15" value="Master Database" style="image;html=1;image=img/lib/clip_art/computers/Database_128x128.png" vertex="1" parent="1">
+          <mxGeometry x="860" y="360" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="elQm2aC_8iu5TuE16WQp-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;opacity=50;" edge="1" parent="1" source="elQm2aC_8iu5TuE16WQp-16" target="elQm2aC_8iu5TuE16WQp-15">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="980" y="633" />
+              <mxPoint x="980" y="400" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="elQm2aC_8iu5TuE16WQp-16" value="Auxillary Database" style="image;html=1;image=img/lib/clip_art/computers/Database_128x128.png" vertex="1" parent="1">
+          <mxGeometry x="860" y="592.63" width="80" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
