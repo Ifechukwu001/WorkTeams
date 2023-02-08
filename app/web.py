@@ -1,6 +1,6 @@
 from flask import render_template, request, url_for
 from flask import redirect, make_response
-from flask_app import create_app
+from app import create_app
 import models
 
 app = create_app()
