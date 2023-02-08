@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block logged %}
-<a href="{{ url_for('logout') }}">Log out</a>
+<a href="{{ url_for('page_views.logout') }}">Log out</a>
 {% endblock %}
 {% block content %}
 <div class="main_app">
@@ -16,7 +16,7 @@
         <div class="column">
             <h4 class="card">Tasks</h4>
             {% for task in tasks %}
-            <a href="{{ url_for('set_taskid', id=task.id) }}">
+            <a href="">
                 <div class="card">
                     <h4>{{ task.title }}</h4>
                     <hr>
@@ -24,19 +24,19 @@
                 </div>
             </a>
             {% endfor %}
-            <a href="{{ url_for('new_task') }}" class="new_btn">New</a>
+            <a href="" class="new_btn">New</a>
         </div>
         <div class="column">
             <h4 class="card">In progress</h4>
             {% for step in undone_steps %}
             <p class="card step">
                 {{ step.info }}
-                <a href="{{ url_for('done_step', id=step.id) }}">
+                <a href="">
                 <img src="{{ url_for('static', filename='tick.png') }}">
                 </a>
             </p>
             {% endfor %}
-            <a href="{{ url_for('new_step') }}" class="new_btn">New</a>
+            <a href="" class="new_btn">New</a>
         </div>
         <div class="column">
             <h4 class="card">Done</h4>

@@ -9,11 +9,11 @@
             <p>{{ error }}</p>
         {% endif %}
         <div class="select_btn">
-            <a href="{{ url_for('register') }}">Register</a>
-            <a href="{{ url_for('login') }}" class="selected">Log in</a>
+            <a href="{{ url_for('page_views.register') }}">Register</a>
+            <a href="{{ url_for('page_views.login') }}" class="selected">Log in</a>
         </div>
         <div class="form">
-            <form id="login" action="{{ url_for('login') }}" method="post">
+            <form id="login" action="{{ url_for('page_views.login') }}" method="post">
                 <input type="text" name="usermail" id="usermail" placeholder="Email:">
                 <input type="text" name="password" id="password" placeholder="Password:">
                 <a href="javascript:document.getElementById('login').submit();"><img src="{{ url_for('static', filename='mark_good.png') }}" alt=""></a>
