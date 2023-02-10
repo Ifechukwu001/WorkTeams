@@ -45,6 +45,8 @@ class BaseModel:
         for key, value in new_dict.items():
             if type(value) is datetime.datetime:
                 new_dict[key] = value.isoformat()
+        if "_sa_instance_state" in new_dict:
+            new_dict.pop("_sa_instance_state")
         if "__class__" not in new_dict:
             new_dict["__class__"] = self.__class__.__name__
 
