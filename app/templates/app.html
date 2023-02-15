@@ -14,10 +14,10 @@
     </div>
     <div class="space">
         <div class="column">
-            <h4 class="card">Tasks</h4>
+            <h4 class="card tops">Tasks</h4>
             {% for task in tasks %}
             <a href="">
-                <div class="card">
+                <div class="card task">
                     <h4>{{ task.title }}</h4>
                     <hr>
                     <p>{{ task.description }}</p>
@@ -27,9 +27,9 @@
             <a href="" class="new_btn">New</a>
         </div>
         <div class="column">
-            <h4 class="card">In progress</h4>
+            <h4 class="card tops">In progress</h4>
             {% for step in undone_steps %}
-            <p class="card step">
+            <p class="card step undone">
                 {{ step.info }}
                 <a href="">
                 <img src="{{ url_for('static', filename='tick.png') }}">
@@ -39,9 +39,9 @@
             <a href="" class="new_btn">New</a>
         </div>
         <div class="column">
-            <h4 class="card">Done</h4>
+            <h4 class="card tops">Done</h4>
             {% for step in done_steps %}
-            <p class="card step">
+            <p class="card step done">
                 {{ step.info }}
                 <img src="{{ url_for('static', filename='tick2.png') }}">
             </p>
