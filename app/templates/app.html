@@ -32,7 +32,7 @@
             <p class="card step undone">
                 {{ step.info }}
                 <a href="">
-                <img src="{{ url_for('static', filename='tick.png') }}">
+                <img src="{{ url_for('static', filename='images/tick.png') }}">
                 </a>
             </p>
             {% endfor %}
@@ -43,7 +43,7 @@
             {% for step in done_steps %}
             <p class="card step done">
                 {{ step.info }}
-                <img src="{{ url_for('static', filename='tick2.png') }}">
+                <img src="{{ url_for('static', filename='images/tick2.png') }}">
             </p>
             {% endfor %}
         </div>
