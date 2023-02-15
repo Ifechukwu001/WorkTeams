@@ -5,13 +5,13 @@
     <div class="ui_form">
         <h4>WorkTeams</h4>
         <p>Collaborating Teams</p>
-        {% if error: %}
-            <p>{{ error }}</p>
-        {% endif %}
         <div class="select_btn">
             <a href="{{ url_for('page_views.register') }}" class="selected">Register</a>
             <a href="{{ url_for('page_views.login') }}">Log in</a>
         </div>
+        {% if error: %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
         <div class="form">
             <form id="register" action="{{ url_for('page_views.register') }}" method="post">
                 <input type="text" name="username" id="username" placeholder="Name:">

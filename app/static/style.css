@@ -177,7 +177,15 @@ footer p {
     font-size: 2em;
 }
 
+.error {
+	color: #000000;
+	background-color: #F50648;
+	font-size: 0.7em;
+	margin: 0.5em;
+}
+
 .select_btn {
+    font-size: 0.8em;
     margin: 1em;
     border: solid 2px #3500F5;
     border-radius: 1em;
