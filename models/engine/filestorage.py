@@ -58,3 +58,7 @@ class FileStorage:
                 self.__objects[key] = classes[value["__class__"]](**value)
         except:
             pass
+
+    def close(self):
+        """Reloads the objects"""
+        self.load()
