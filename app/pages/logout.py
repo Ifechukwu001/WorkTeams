@@ -6,6 +6,5 @@ from app.pages import page_views
 def logout():
     storage.save()
     response = make_response(redirect(url_for("page_views.login")))
-    response.set_cookie("userID", "")
-    response.set_cookie("taskID", "")
+    response.delete_cookie("userID")
     return response

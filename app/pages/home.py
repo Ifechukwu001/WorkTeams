@@ -10,9 +10,7 @@ def home():
     user = storage.get(User, user_id)
     if user:
         user_info = user.to_dict()
-        response = make_response(render_template("app.html",
-                                                user=user_info,
-                                                ))
+        response = make_response(render_template("app.html"))
         #response.set_cookie("taskID", task_id)
         return response
     else:
