@@ -1,3 +1,4 @@
+/* Default cleanup of css */
 html {
     box-sizing: border-box;
     font-size: 16px;
@@ -11,6 +12,7 @@ body, h1, h2, h3, h4, h5, h6, p, ol, ul {
     margin: 0;
     padding: 0;
     font-weight: normal;
+    cursor: pointer;
 }
 
 a {
@@ -27,6 +29,7 @@ img {
     height: auto;
 }
 
+/* Header Designs */
 header {
     position: sticky;
     top: 0;
@@ -51,6 +54,7 @@ hr {
     margin: 0;
 }
 
+/* Main App Designs */
 .main_app {
     position: absolute;
     display: grid;
@@ -80,6 +84,12 @@ hr {
 
 .dashboard li {
     margin: 1em 0;
+}
+
+.dashboard #subordinates {
+    display: none;
+    font-size: small;
+    color: #16E4F5;
 }
 
 .card {
@@ -134,6 +144,7 @@ p.new_btn {
     background-color: #3500F5;
 }
 
+/* Footer Designs */
 footer {
     position: fixed;
     bottom: 0px;
@@ -148,6 +159,7 @@ footer p {
     color: #FFFFFF;
 }
 
+/* Modal & Form Designs */
 .modal {
     display: none;
     position: fixed;
@@ -161,12 +173,12 @@ footer p {
 }
 
 .container {
+    height: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
 
 .create_div {
-    height: 100%;
     grid-template-columns: 2fr 1fr 2fr;
 }
 
@@ -251,6 +263,53 @@ form {
     margin: 1em 1px;
 }
 
-.bttn {
-    background: url("../images/mark_good.png") 100px 10px no-repeat;
+/* Reports Design */
+.reportSpace {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: fit-content;
+	background-color: #3500F5;
+	border-radius: 1em;
+}
+
+.reportSpace nav {
+	display: flex;
+	justify-content: space-around;
+	margin: 1em;
+    border: solid 2px #FFFFFF;
+	border-radius: 3em;
+	background-color: #3500F5;
+}
+
+nav li {
+	list-style: none;
+	padding: 0 1em;
+    color: #FFFFFF;
+}
+
+li.selected {
+	border-left: solid 1px #16E4F5;
+	border-right: solid 1px #16E4F5;
+	border-radius: 3em;
+	color: #3500F5;
+	background-color: #16E4F5;
+}
+
+.reportView {
+	border: solid 2px #FFFFFF;
+    margin: 1em;
+    border-radius: 1em;
+}
+
+.reportItem {
+	border: solid 2px #FFFFFF;
+    border-radius: 1em;
+	margin: 1em;
+    padding: 0.5em;
+    color: #FFFFFF;
+}
+
+#report-task {
+    text-align: right;
 }

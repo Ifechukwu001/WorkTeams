@@ -62,15 +62,61 @@ function loadDone (userid, taskid) {
     })
 }
 
+//Load reports
+function loadReport(userid, subid="") {
+    let reportViewContent = ""
+    $.get(`http://0.0.0.0:5001/api/${userid}/reports/${subid}`, function (response) {
+        response.forEach(reports => {
+            reports.forEach(report => {
+                let title = `<h3>${report["title"]}</h3>`;
+                let desc = `<p>${report["summary"]}</p>`;
+                let progress = ` <p id="report-task">${report["done_tasks"]}/${report["total_tasks"]} Tasks done</p>`;
+
+                let reportItem = `<article class="reportItem">${title} ${desc} ${progress}</article>`;
+                reportViewContent += reportItem;
+            })
+        })
+        $("div.reportView").html(reportViewContent)
+    })
+}
+
+//Load report form
+function createReportForm () {
+    let form = `<form id="report-form" class="form">
+                <textarea name="summary" id="summary" placeholder="Summmarize your progress (optional)" cols="25" rows="6"></textarea> 
+                <input type="submit" value="Create">
+                </form>`
+    $("div.reportView").html(form)
+}
+
+//Load subordinates
+function loadSubs(userid) {
+    let subordinatesContent = "";
+    $.get(`http://0.0.0.0:5001/api/${userid}/subordinates`, (response) => {
+        response.forEach(sub => {
+            let subordinate = `<li>${sub["email"]}</li>`;
+            subordinatesContent += subordinate;
+        })
+        $("#subordinates").html(subordinatesContent);
+    })
+}
+
+
+
+//Dynamic Functionalities
 $(window).on('load', function () {
     const userID = getUser();
 
     updateInfo(userID);
+    loadSubs(userID);
     showTasks(userID);
+    loadReport(userID);
 
     //Update page based on the task clicked
     $("#tasks").on("click", ".task", function () {
         let taskID = $(this).attr("task-id");
+        $(".task").css("background-color", "#F57318")
+        $(this).css("background-color", "#DB6715")
         loadUndone(userID, taskID);
         loadDone(userID, taskID)
     })
@@ -94,10 +140,11 @@ $(window).on('load', function () {
     $("p#new_step").on("click", function () {
         $("#newStep").css("display", "block");
     })
-    //Remove the pop up
+    //Remove the pop ups
     $(".exit").on("click", function () {
         $("#newTask").css("display", "none");
         $("#newStep").css("display", "none");
+        $("#reports").css("display", "none")
     })
 
     //Submit handler for new task
@@ -125,9 +172,7 @@ $(window).on('load', function () {
                 data: `{"title": "${title}", "description": "${desc}", "deadline": ["${dl[0]}","${dl[1]}","${dl[2]}","${tm[0]}","${tm[1]}"]}`,
                 success: function (response) {
                     $("#newTask").css("display", "none");
-                    if (response === "{}") {
-                        alert("New task created!")
-                    }
+                    alert("New task created!");
                 }
             })
             showTasks(userID)
@@ -156,5 +201,43 @@ $(window).on('load', function () {
             showTasks(userID, taskId);
         }
         return false;
+    })
+
+    //Popup Reports modal
+    $("#report").on("click", function () {
+        $("#reports").css("display", "block")
+    })
+
+    //Show all subordinate reports
+    $("#all-reports").on("click", function() {
+        $("#create-report").removeClass("selected");
+        $(this).addClass("selected")
+        loadReport(userID);
+    })
+
+    //Load create report form
+    $("#create-report").on("click", function() {
+        $("#all-reports").removeClass("selected");
+        $(this).addClass("selected")
+        createReportForm();
+    })
+
+    //Submit handler for create report
+    $("#report-form").submit(function(e) {
+        e.preventDefault()
+
+        let summary = $("#summary").val()
+        $.post({
+            url: `http://0.0.0.0:5001/api/${userID}/reports`,
+                contentType: "application/json",
+                data: `{"summary": "${summary}"}`,
+                success: function (response) {
+                    alert("Report has been sent to your superiors.")
+                }
+        })
+    })
+
+    $("#subordinate").on("click", () => {
+        $("#subordinates").toggle();
     })
 })

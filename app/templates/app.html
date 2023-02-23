@@ -8,8 +8,10 @@
         <ul>
             <li id="username"></li>
             <li id="usermail"></li>
-            <li>Notification</li>
-            <li>Reports</li>
+            <li id="notification">Notification</li>
+            <li id="report">Reports</li>
+            <li id="subordinate">Subordinates</li>
+            <ul id="subordinates"></ul>
         </ul>
     </div>
     <div class="space">
@@ -39,7 +41,7 @@
                 <form>
                     <input type="text" name="title" id="title" placeholder="Title:">
                     <p class="error" id="titleError"></p>
-                    <textarea name="description" id="desc" cols="20" rows="5" placeholder="Description:"></textarea>
+                    <textarea name="description" id="desc" cols="25" rows="5" placeholder="Description:"></textarea>
                     <div class="datetime">
                         <input type="date" name="dline_date" id="date">
                         <input type="time" name="dline_time" id="time">
@@ -59,11 +61,24 @@
             <h4>New Step</h4>
             <div class="form">
                 <form>
-                    <input name="info" id="info" placeholder="Step:">
+                    <input type="text" name="info" id="info" placeholder="Step:">
                     <p class="error" id="infoError"></p>
                     <a href="" id="createStep" ><img src="{{ url_for('static', filename='images/mark_good.png') }}" alt=""></a>
                 </form>
             </div>
+        </div>
+        <div class="exit"></div>
+    </div>
+</div>
+<div class="modal" id="reports">
+    <div class="container">
+        <div class="exit"></div>
+        <div class="reportSpace">
+            <nav>
+                <li id="create-report">Create My Report</li>
+                <li class="selected" id="all-reports">Subordinates Reports</li>
+            </nav>
+            <div class="reportView"></div>
         </div>
         <div class="exit"></div>
     </div>
