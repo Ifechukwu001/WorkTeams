@@ -29,6 +29,7 @@ function showTasks (userid, taskid=null) {
             sectionContent += taskContent;
         });
         $("section#tasks").html(sectionContent);
+        $("section#tasks").find(`[task-id="${taskId}"]`).css("background-color", "#DB6715")
         loadUndone(userid, taskId)
         loadDone(userid, taskId)
     })
