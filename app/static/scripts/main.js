@@ -145,7 +145,7 @@ $(window).on('load', function () {
     $(".exit").on("click", function () {
         $("#newTask").css("display", "none");
         $("#newStep").css("display", "none");
-        $("#reports").css("display", "none")
+        $("#reports").css("display", "none");
     })
 
     //Submit handler for new task
@@ -224,7 +224,7 @@ $(window).on('load', function () {
     })
 
     //Submit handler for create report
-    $("#report-form").submit(function(e) {
+    $(".reportView").on("submit", "#report-form", function(e) {
         e.preventDefault()
 
         let summary = $("#summary").val()
@@ -233,7 +233,8 @@ $(window).on('load', function () {
                 contentType: "application/json",
                 data: `{"summary": "${summary}"}`,
                 success: function (response) {
-                    alert("Report has been sent to your superiors.")
+                    $("#reports").css("display", "none");
+                    alert("Report has been sent to your superiors.");
                 }
         })
     })
