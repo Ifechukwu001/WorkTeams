@@ -9,7 +9,9 @@ def user(user_id):
     user = storage.get(User, user_id)
     if not user:
         abort(404)
-    return jsonify(user.to_dict())
+    user_data = user.to_dict()
+    user_data.pop("password")
+    return jsonify(user_data)
 
 @api_views.route("/user/<user_id>", methods=["POST"], strict_slashes=False)
 def create_user(user_id):
@@ -36,6 +38,7 @@ def subordinates(user_id):
     subs_json = []
     for sub in user.subordinates:
         subs_json.append(sub.to_dict())
+    subs_data = [data.pop("password") for data in subs_json]
     return jsonify(subs_json)
 
 @api_views.route("/<user_id>/subordinates/<subordinate_id>", strict_slashes=False)
