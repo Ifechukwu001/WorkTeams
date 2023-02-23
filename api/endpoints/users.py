@@ -38,7 +38,7 @@ def subordinates(user_id):
     subs_json = []
     for sub in user.subordinates:
         subs_json.append(sub.to_dict())
-    subs_data = [data.pop("password") for data in subs_json]
+    [data.pop("password") for data in subs_json] #Modifies the original list without creating a new one.
     return jsonify(subs_json)
 
 @api_views.route("/<user_id>/subordinates/<subordinate_id>", strict_slashes=False)
