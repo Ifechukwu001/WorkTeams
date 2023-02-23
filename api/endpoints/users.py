@@ -39,7 +39,7 @@ def subordinates(user_id):
     for sub in user.subordinates:
         subs_json.append(sub.to_dict())
     subs_data = [data.pop("password") for data in subs_json]
-    return jsonify(subs_json)
+    return jsonify(subs_data)
 
 @api_views.route("/<user_id>/subordinates/<subordinate_id>", strict_slashes=False)
 def sub_subordinates(user_id, subordinate_id):
