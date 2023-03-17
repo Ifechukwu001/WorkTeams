@@ -1,4 +1,4 @@
-from flask import request, make_response, render_template
+from flask import request, make_response, render_template, redirect, url_for
 from models import storage
 from models.user import User
 from app.pages import page_views
@@ -14,4 +14,4 @@ def home():
         #response.set_cookie("taskID", task_id)
         return response
     else:
-        return "Unauthorized access"
+        return redirect(url_for("page_views.login"))

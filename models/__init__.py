@@ -10,6 +10,7 @@ else:
     storage = FileStorage()
 
 storage.load()
+storage.save()
 
 admin = False
 home = "{}/WTeams".format(os.getenv("HOME"))

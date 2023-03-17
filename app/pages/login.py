@@ -11,7 +11,6 @@ def login():
         for user in storage.all(User):
             if user.email == email and user.password == password:
                 user_id = user.id
-                print(user_id)
                 response = make_response(redirect(url_for("page_views.home")))
                 response.set_cookie("userID", user_id)
                 return response

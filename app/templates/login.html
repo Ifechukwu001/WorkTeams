@@ -15,7 +15,7 @@
         <div class="form">
             <form id="login" action="{{ url_for('page_views.login') }}" method="post">
                 <input type="text" name="usermail" id="usermail" placeholder="Email:">
-                <input type="text" name="password" id="password" placeholder="Password:">
+                <input type="password" name="password" id="password" placeholder="Password:">
                 <a href="javascript:document.getElementById('login').submit();"><img src="{{ url_for('static', filename='images/mark_good.png') }}" alt=""></a>
             </form>
         </div>
