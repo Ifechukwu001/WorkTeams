@@ -6,3 +6,4 @@ from api.endpoints.users import *
 from api.endpoints.reports import *
 from api.endpoints.steps import *
 from api.endpoints.tasks import *
+from api.endpoints.auth import *
