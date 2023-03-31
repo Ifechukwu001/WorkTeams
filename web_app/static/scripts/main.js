@@ -1,6 +1,6 @@
 //Get the User logged in
 function getUser() {
-    return document.cookie.split("=")[1]
+    return 'b2753a85-9980-479f-a974-89119026442d'
 }
 
 // Updates the dashboard with user info
