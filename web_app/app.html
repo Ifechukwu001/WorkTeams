@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/styles/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="static/scripts/main.js"></script>
+    <title>WorkTeams</title>
+</head>
+
+<body>
+    <header>
+        <div>
+            <a href="#">
+                <h3>WT</h3>
+            </a>
+            <nav>
+                <a href="#">Log out</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main_app">
+    <div class="dashboard">
+        <ul>
+            <li id="username"></li>
+            <li id="usermail"></li>
+            <li id="notification">Notification</li>
+            <li id="report">Reports</li>
+            <li id="subordinate">Subordinates</li>
+            <ul id="subordinates"></ul>
+        </ul>
+    </div>
+    <div class="space">
+        <div class="column">
+            <h4 class="card tops">Tasks</h4>
+            <section id="tasks"></section>
+            <p id="new_task" class="new_btn">New</p>
+        </div>
+        <div class="column">
+            <h4 class="card tops">In progress</h4>
+            <section id="undones"></section>
+            <p id="new_step" class="new_btn">New</p>
+        </div>
+        <div class="column">
+            <h4 class="card tops">Done</h4>
+            <section id="dones"></section>
+        </div>
+    </div>
+
+</div>
+<div class="modal" id="newTask">
+    <div class="container create_div">
+        <div class="exit"></div>
+        <div class="ui_form create_form">
+            <h4>New Task</h4>
+            <div class="form">
+                <form>
+                    <input type="text" name="title" id="title" placeholder="Title:">
+                    <p class="error" id="titleError"></p>
+                    <textarea name="description" id="desc" cols="25" rows="5" placeholder="Description:"></textarea>
+                    <div class="datetime">
+                        <input type="date" name="dline_date" id="date">
+                        <input type="time" name="dline_time" id="time">
+                    </div>
+                    <p class="error" id="deadlineError"></p>
+                    <a href="" id="createTask"><img src="static/images/mark_good.png" alt=""></a>
+                </form>
+            </div>
+        </div>
+        <div class="exit"></div>
+    </div>
+</div>
+<div class="modal" id="newStep">
+    <div class="container create_div">
+        <div class="exit"></div>
+        <div class="ui_form create_form">
+            <h4>New Step</h4>
+            <div class="form">
+                <form>
+                    <input type="text" name="info" id="info" placeholder="Step:">
+                    <p class="error" id="infoError"></p>
+                    <a href="" id="createStep" ><img src="static/images/mark_good.png" alt=""></a>
+                </form>
+            </div>
+        </div>
+        <div class="exit"></div>
+    </div>
+</div>
+<div class="modal" id="reports">
+    <div class="container">
+        <div class="exit"></div>
+        <div class="reportSpace">
+            <nav>
+                <li id="create-report">Create My Report</li>
+                <li class="selected" id="all-reports">Subordinates Reports</li>
+            </nav>
+            <div class="reportView"></div>
+        </div>
+        <div class="exit"></div>
+    </div>
+</div>
+
+    <footer>
+        <p>WorkTeams (2023)</p>
+    </footer>
+</body>
+
+</html>
