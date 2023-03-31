@@ -1,6 +1,6 @@
 from flask import make_response, redirect, url_for
 from models import storage
-from app.pages import page_views
+from flask_app.pages import page_views
 
 @page_views.route("/logout")
 def logout():

@@ -1,4 +1,4 @@
-from app.web import app as web
+from flask_app.web import app as web
 from api.app import app as api
 
 if __name__ == "__main__":

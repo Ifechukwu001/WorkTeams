@@ -1,5 +1,5 @@
-from app import create_app
-from app.pages import page_views
+from flask_app import create_app
+from flask_app.pages import page_views
 
 app = create_app()
 app.register_blueprint(page_views)

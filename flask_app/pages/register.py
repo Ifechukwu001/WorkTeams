@@ -1,7 +1,7 @@
 from flask import request, redirect, url_for, render_template
 from models import storage
 from models.user import User
-from app.pages import page_views
+from flask_app.pages import page_views
 
 @page_views.route("/register", methods=["GET", "POST"])
 def register():
