@@ -53,4 +53,5 @@ def sub_subordinates(user_id, subordinate_id):
     subs_json = []
     for sub in subordinate.subordinates:
         subs_json.append(sub.to_dict())
+    [data.pop("password") for data in subs_json] #Modifies the original list without creating a new one.
     return jsonify(subs_json)
