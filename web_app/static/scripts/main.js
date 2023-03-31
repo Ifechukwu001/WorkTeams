@@ -5,7 +5,7 @@ function getUser() {
 
 // Updates the dashboard with user info
 function updateInfo(id) {
-    $.get(`http://0.0.0.0:5001/api/user/${id}`, function (response) {
+    $.get(`https://ifechukwu.pythonanywhere.com/api/user/${id}`, function (response) {
         username = response["name"];
         email = `(${response["email"]})`;
         $("ul #username").text(username);
@@ -15,7 +15,7 @@ function updateInfo(id) {
 
 // Loads all the undone tasks
 function showTasks (userid, taskid=null) {
-    $.get(`http://0.0.0.0:5001/api/${userid}/tasks`, function (response) {
+    $.get(`https://ifechukwu.pythonanywhere.com/api/${userid}/tasks`, function (response) {
         let sectionContent = ""
         let taskId = taskid;
         response.forEach(task => {
@@ -38,7 +38,7 @@ function showTasks (userid, taskid=null) {
 
 //Loads all the undone steps
 function loadUndone (userid, taskid) {
-    $.get(`http://0.0.0.0:5001/api/${userid}/task/${taskid}/undone`, function (response) {
+    $.get(`https://ifechukwu.pythonanywhere.com/api/${userid}/task/${taskid}/undone`, function (response) {
         let sectionContent = "";
         let img = `<img src="/static/images/tick.png">`;
         response.forEach(step => {
@@ -52,7 +52,7 @@ function loadUndone (userid, taskid) {
 
 //Loads all done steps
 function loadDone (userid, taskid) {
-    $.get(`http://0.0.0.0:5001/api/${userid}/task/${taskid}/done`, function (response) {
+    $.get(`https://ifechukwu.pythonanywhere.com/api/${userid}/task/${taskid}/done`, function (response) {
         let sectionContent = "";
         let img = `<img src="/static/images/tick2.png">`;
         response.forEach(step => {
@@ -66,7 +66,7 @@ function loadDone (userid, taskid) {
 //Load reports
 function loadReport(userid, subid="") {
     let reportViewContent = ""
-    $.get(`http://0.0.0.0:5001/api/${userid}/reports/${subid}`, function (response) {
+    $.get(`https://ifechukwu.pythonanywhere.com/api/${userid}/reports/${subid}`, function (response) {
         response.forEach(reports => {
             reports.forEach(report => {
                 let title = `<h3>${report["title"]}</h3>`;
@@ -93,7 +93,7 @@ function createReportForm () {
 //Load subordinates
 function loadSubs(userid) {
     let subordinatesContent = "";
-    $.get(`http://0.0.0.0:5001/api/${userid}/subordinates`, (response) => {
+    $.get(`https://ifechukwu.pythonanywhere.com/api/${userid}/subordinates`, (response) => {
         response.forEach(sub => {
             let subordinate = `<li>${sub["email"]}</li>`;
             subordinatesContent += subordinate;
@@ -128,7 +128,7 @@ $(window).on('load', function () {
         let stepId = $(this).parent().attr("step-id")
         $.ajax({
             type: "PUT",
-            url: `http://0.0.0.0:5001/api/${userID}/task/${taskId}/done/${stepId}`
+            url: `https://ifechukwu.pythonanywhere.com/api/${userID}/task/${taskId}/done/${stepId}`
         });
         showTasks(userID, taskId);
     })
@@ -168,7 +168,7 @@ $(window).on('load', function () {
                 tm = ["06", "00"];
             }
             $.post({
-                url:`http://0.0.0.0:5001/api/${userID}/tasks`,
+                url:`https://ifechukwu.pythonanywhere.com/api/${userID}/tasks`,
                 contentType: "application/json",
                 data: `{"title": "${title}", "description": "${desc}", "deadline": ["${dl[0]}","${dl[1]}","${dl[2]}","${tm[0]}","${tm[1]}"]}`,
                 success: function (response) {
@@ -189,7 +189,7 @@ $(window).on('load', function () {
             $("p#infoError").text("No Info");
         } else {
             $.post({
-                url: `http://0.0.0.0:5001/api/${userID}/task/${taskId}`,
+                url: `https://ifechukwu.pythonanywhere.com/api/${userID}/task/${taskId}`,
                 contentType: "application/json",
                 data: `{"info": "${info}"}`,
                 success: function (response) {
@@ -229,7 +229,7 @@ $(window).on('load', function () {
 
         let summary = $("#summary").val()
         $.post({
-            url: `http://0.0.0.0:5001/api/${userID}/reports`,
+            url: `https://ifechukwu.pythonanywhere.com/api/${userID}/reports`,
                 contentType: "application/json",
                 data: `{"summary": "${summary}"}`,
                 success: function (response) {
