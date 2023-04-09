@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./output.css">
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    @font-face{
+      font-family: 'JOST';
+      src: url('../Assets/Jost/Jost-VariableFont_wght.ttf');
+    }
+    @font-face{
+      font-family: 'Raleway';
+      src: url('../Assets/Raleway/Raleway-VariableFont_wght.ttf');
+    }
+  </style>
+  <title>Sign in</title>
+</head>
+
+<body class="bg-[#3295e5] max-w-7xl w-full h-screen m-auto relative flex flex-col">
+  <header class="text-white">
+    <nav class="flex justify-between items-center px-8 py-4">
+      <a href="#">
+        <h1 class="text-[1.7rem] font-bold">WorkTeams</h1>
+      </a>
+    </nav>
+  </header>
+
+  <main class="flex flex-col items-center justify-center pt-10 w-[75%] sm:w-[40%] lg:w-[30%] bg-white m-auto rounded-xl">
+    <section>
+      <div class="w-[80%] m-auto">
+        <h1 class="text-[1.7rem] text-gray-700 font-bold mb-4">Sign Up</h1>
+      </div>
+  
+      <form action="POST" class="w-[80%] m-auto">
+        <input type="text" placeholder="Email" class="w-full py-2 px-4 my-4 bg-gray-200 outline-none rounded">
+        <input type="text" placeholder="Password" class="w-full py-2 px-4 my-4 bg-gray-200 outline-none rounded">
+        <input type="text" placeholder="Superiors Mail" class="w-full py-2 px-4 my-4 bg-gray-200 outline-none rounded">
+        <!-- <input type="text" placeholder="Password" class="w-full py-2 px-4 my-4 bg-gray-200 outline-none rounded"> -->
+  
+        <div class="w-full mt-8">
+          <button class="text-white font-semibold bg-[#3295e5] hover:bg-blue-400 hover:transition hover:ease-in-out hover:delay-80 text-center w-full py-2 rounded">Submit</button>
+        </div>
+      </form>
+    </section>
+
+    <div class="pt-6 pb-14">
+      <p class="text-sm text-gray-500">Already registered? <a href="./login.html" class="underline">Login</a></p>
+    </div>
+  </main>
+
+  <footer class="text-white mt-auto flex justify-center items-center absolute bottom-0 left-0 right-0 mx-auto">
+    <p>WorkTeams @<span id="currentYear"></span></p>
+  </footer>
+  <script src="./script.js"></script>
+</body>
+</html>

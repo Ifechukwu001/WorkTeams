@@ -6,17 +6,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./output.css">
   <link rel="stylesheet" href="./style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Raleway:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"> 
-  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Raleway:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">  -->
+  <style>
+    @font-face{
+      font-family: 'JOST';
+      src: url('../Assets/Jost/Jost-VariableFont_wght.ttf');
+    }
+    @font-face{
+      font-family: 'Raleway';
+      src: url('../Assets/Raleway/Raleway-VariableFont_wght.ttf');
+    }
+  </style>
   <title>Sign in</title>
 </head>
-<body class="bg-[#3295e5] max-w-7xl w-full h-screen m-auto relative flex flex-col">
+
+<body class="bg-[#3295e5] max-w-7xl w-full h-screen m-auto relative flex flex-col font-[JOST]">
   <header class="text-white">
     <nav class="flex justify-between items-center px-8 py-4">
       <a href="#">
-        <h1 class="text-[1.7rem] font-bold">WorkTeams</h1>
+        <h1 class="text-[1.7rem] font-bold font-[Raleway]">WorkTeams</h1>
       </a>
       <!-- <ul>
         <a href="#">
@@ -28,7 +38,7 @@
 
   <main class="flex flex-col items-center justify-center pt-10 w-[75%] sm:w-[40%] lg:w-[30%] bg-white m-auto rounded-xl">
     <section>
-      <div class="w-[80%] m-auto"">
+      <div class="w-[80%] m-auto">
         <h1 class="text-[1.7rem] text-gray-700 font-bold mb-4">Login</h1>
         <!-- <p>Collaborating teams</p> -->
       </div>
@@ -44,7 +54,7 @@
     </section>
 
     <div class="pt-6 pb-14">
-      <p class="text-sm text-gray-500 underline"><a href="https://google.com">Sign up</a></p>
+      <p class="text-sm text-gray-500">Not registered? <a href="./signup.html" class="underline">Sign up</a></p>
     </div>
   </main>
 
