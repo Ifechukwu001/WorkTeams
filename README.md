@@ -13,14 +13,14 @@ This is a software which could use to track your personal or organisation's task
 
 ### Use Cases
 
-- A Student wants to read his Chemistry textbook.
+A Student wants to read his Chemistry textbook.
 He/She could:
  - First create a list of topics to read.
  - Start the reading.
  - Ask self questions on the topics.
  - Finally, solve some past questions on the course.
 
-- An Engineer who wants to solve an engineering task.
+An Engineer who wants to solve an engineering task.
 He/She could:
  - Describe the engineering problem.
  - Research on previous success of others on the problem.
@@ -28,7 +28,7 @@ He/She could:
  - Work on possible solutions
  - Finish initial MVP, etc
 
-- A Director could also define tasks for subordinates, leaving the decision of the steps for the subordinate to create.
+A Director could also define tasks for subordinates, leaving the decision of the steps for the subordinate to create.
 
 
 ### Collaborators
