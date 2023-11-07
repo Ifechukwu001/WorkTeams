@@ -57,21 +57,21 @@ A Director could also define tasks for subordinates, leaving the decision of the
 
 | Endpoint                                           | Method | Function                                             |
 | :------------------------------------------------- | :----- | :--------------------------------------------------- |
-| /api/v2/user                                       | POST   | Authenticates a user                                 |
-| /api/v2/user/\<user_id>                            | GET    | Returns a user assigned to the id                    |
-| /api/v2/user/\<user_id>                            | POST   | Create a new subordinate of the user                 |
-| /api/v2/user/\<user_id>                            | PUT    | Updates the information of a user                    |
-| /api/v2/\<user_id>/tasks                           | GET    | Returns all the undone tasks assigned to a user      |
-| /api/v2/\<user_id>/tasks                           | POST   | Creates a new task for a user                        |
-| /api/v2/\<user_id>/tasks/\<subordinate_id>         | POST   | Creates a new task for a subordinate                 |
-| /api/v2/\<user_id>/task/\<task_id>                 | POST   | Creates a new step of a task                         |
-| /api/v2/\<user_id>/task/\<task_id>/undone          | GET    | Returns all undone steps of a task                   |
-| /api/v2/\<user_id>/task/\<task_id>/done            | GET    | Returns all done steps of a task                     |
-| /api/v2/\<user_id>/task/\<task_id>/done/\<step_id> | PUT    | Update an undone step status                         |
-| /api/v2/\<user_id>/subordinates                    | GET    | Returns all the subordinates of a user               |
-| /api/v2/\<user_id>/subordinates/\<subordinate_id>  | GET    | Returns all the subordinates of a user’s subordinate |
-| /api/v2/\<user_id>/reports                         | GET    | Returns all subordinates reports                     |
-| /api/v2/\<user_id>/reports                         | POST   | Create a new report                                  |
-| /api/v2/\<user_id>/reports/\<subordinate_id>       | GET    | Returns all subordinates reports                     |
-| /api/v2/\<user_id>/notifications                   | GET    | Returns all the unread notifications (In Progress)   |
-| /api/v2/\<user_id>/notifications                   | POST   | Create a new notification (In Progress)              | 
+| /api/user                                       | POST   | Authenticates a user                                 |
+| /api/user/\<user_id>                            | GET    | Returns a user assigned to the id                    |
+| /api/user/\<user_id>                            | POST   | Create a new subordinate of the user                 |
+| /api/user/\<user_id>                            | PUT    | Updates the information of a user                    |
+| /api/\<user_id>/tasks                           | GET    | Returns all the undone tasks assigned to a user      |
+| /api/\<user_id>/tasks                           | POST   | Creates a new task for a user                        |
+| /api/\<user_id>/tasks/\<subordinate_id>         | POST   | Creates a new task for a subordinate                 |
+| /api/\<user_id>/task/\<task_id>                 | POST   | Creates a new step of a task                         |
+| /api/\<user_id>/task/\<task_id>/undone          | GET    | Returns all undone steps of a task                   |
+| /api/\<user_id>/task/\<task_id>/done            | GET    | Returns all done steps of a task                     |
+| /api/\<user_id>/task/\<task_id>/done/\<step_id> | PUT    | Update an undone step status                         |
+| /api/\<user_id>/subordinates                    | GET    | Returns all the subordinates of a user               |
+| /api/\<user_id>/subordinates/\<subordinate_id>  | GET    | Returns all the subordinates of a user’s subordinate |
+| /api/\<user_id>/reports                         | GET    | Returns all subordinates reports                     |
+| /api/\<user_id>/reports                         | POST   | Create a new report                                  |
+| /api/\<user_id>/reports/\<subordinate_id>       | GET    | Returns all subordinates reports                     |
+| /api/\<user_id>/notifications                   | GET    | Returns all the unread notifications (In Progress)   |
+| /api/\<user_id>/notifications                   | POST   | Create a new notification (In Progress)              |
