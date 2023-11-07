@@ -4,9 +4,16 @@ from models import storage
 from models.user import User
 from models.task import Task
 from models.step import Step
+from flask_apispec import use_kwargs, marshal_with, doc
+from api import schemas
 
-@api_views.route("/<user_id>/task/<task_id>", methods=["POST"], strict_slashes=False)
-def create_step(user_id, task_id):
+
+@api_views.route("/<user_id>/task/<task_id>", methods=["POST"],
+                 strict_slashes=False)
+@use_kwargs(schemas.StepCreateSchema)
+@marshal_with(None, code=201)
+@doc(tags=["step"], description="Creates a new step of a task")
+def create_step(user_id, task_id, **kwargs):
     """Creates a new step of a task"""
     if request.content_type != "application/json":
         abort(400, description="Not a JSON")
@@ -21,9 +28,13 @@ def create_step(user_id, task_id):
                     info=data["info"],
                     user_id=user_id,
                     )
-    return jsonify({})
+    return jsonify({}), 201
 
-@api_views.route("/<user_id>/task/<task_id>/undone", strict_slashes=False)
+
+@api_views.route("/<user_id>/task/<task_id>/undone", methods=["GET"],
+                 strict_slashes=False)
+@marshal_with(schemas.StepResourceSchema(many=True))
+@doc(tags=["step"], description="Returns all undone steps of a task")
 def steps_undone(user_id, task_id):
     """Returns all undone steps of a task"""
     user = storage.get(User, user_id)
@@ -34,9 +45,14 @@ def steps_undone(user_id, task_id):
     for step in task.steps:
         if step.status == "in progress":
             undone_json.append(step.to_dict())
+    [step.pop("__class__") for step in undone_json]
     return jsonify(undone_json)
 
-@api_views.route("/<user_id>/task/<task_id>/done", strict_slashes=False)
+
+@api_views.route("/<user_id>/task/<task_id>/done", methods=["GET"],
+                 strict_slashes=False)
+@marshal_with(schemas.StepResourceSchema(many=True))
+@doc(tags=["step"], description="Returns all done steps of a task")
 def steps_done(user_id, task_id):
     """Returns all done steps of a task"""
     user = storage.get(User, user_id)
@@ -47,9 +63,14 @@ def steps_done(user_id, task_id):
     for step in task.steps:
         if step.status == "done":
             done_json.append(step.to_dict())
+    [step.pop("__class__") for step in done_json]
     return jsonify(done_json)
 
-@api_views.route("/<user_id>/task/<task_id>/done/<step_id>", methods=["PUT"], strict_slashes=False)
+
+@api_views.route("/<user_id>/task/<task_id>/done/<step_id>", methods=["PUT"],
+                 strict_slashes=False)
+@marshal_with(None, 200)
+@doc(tags=["step"], description="Update an undone step status")
 def update_step(user_id, task_id, step_id):
     """Update an undone step status"""
     user = storage.get(User, user_id)
@@ -65,4 +86,3 @@ def update_step(user_id, task_id, step_id):
     task.done()
     storage.save()
     return jsonify({})
-    
