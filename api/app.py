@@ -36,7 +36,7 @@ def close_db(error):
     storage.close()
 
 @app.route("/")
-def home:
+def home():
     """ Redirects to swagger """
     return redirect("/swagger/")
 
