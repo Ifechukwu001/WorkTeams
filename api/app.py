@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """The API App module"""
-from flask import Flask
+from flask import Flask, redirect
 from flask_cors import CORS
 import models
 from models import storage
@@ -34,6 +34,11 @@ for name, view in docs.app.view_functions.items():
 def close_db(error):
     """ Remove the current SQLAlchemy Session """
     storage.close()
+
+@app.route("/")
+def home:
+    """ Redirects to swagger """
+    return redirect("/swagger/")
 
 
 if __name__ == "__main__":
