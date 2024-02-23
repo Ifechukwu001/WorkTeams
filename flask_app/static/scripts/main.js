@@ -5,7 +5,7 @@ function getUser() {
 
 // Updates the dashboard with user info
 function updateInfo(id) {
-    $.get(`http://0.0.0.0:5001/api/user/${id}`, function (response) {
+    $.get(`https://workteams-api.onrender.com/api/user/${id}`, function (response) {
         username = response["name"];
         email = `(${response["email"]})`;
         $("ul #username").text(username);
